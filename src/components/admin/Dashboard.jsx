@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TopicCard from './TopicCard'
+import AddCardModal from '../AddCardModal'
 
 const topics = [
     {
@@ -25,6 +26,7 @@ const topics = [
 ]
 
 const Dashboard = () => {
+    const [isAddModelOpen, setIsAddModalOpen] = useState(true)
 
     const TopicMenu = ({ name }) => {
         return (
@@ -73,6 +75,7 @@ const Dashboard = () => {
                 </div>
             </section>
         ))}
+        {isAddModelOpen && <AddCardModal onClose={() => setIsAddModalOpen(prev => !prev)} />}
     </main>
   )
 }
