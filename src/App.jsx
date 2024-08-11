@@ -4,7 +4,7 @@ import './index.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Topic from './pages/Topic';
-
+import Admin from './pages/Admin';
 
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           <Routes>
             <Route path='/' index element={<Dashboard />} />
             <Route path="/:id" element={<Topic />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </BrowserRouter>
       </div>
