@@ -4,6 +4,7 @@ import AddCardModal from '../AddCardModal'
 import { deleteCard, getTopicCards, getTopicsList } from '../../server_api'
 import EditCardModal from '../EditCardModal'
 import { toast } from 'react-toastify'
+import AddTopicModal from '../AddTopicModal'
 
 const Dashboard = () => {
     const [isAddModelOpen, setIsAddModalOpen] = useState(false);
@@ -11,12 +12,11 @@ const Dashboard = () => {
     const [activeTopic, setActiveTopic] = useState(null);
     const [topics, setTopics] = useState([]);
     const [topicCards, setTopicCards] = useState({});
+    const [isAddTopicModalOpen, setIsAddTopicModalOpen] = useState(false);
 
     // load topics on initial load
     useEffect(() => {
-        getTopicsList().then(res => {
-            setTopics(res)
-        })
+        loadTopicList()
     }, [])
 
     // set active topic on initial load
@@ -40,6 +40,12 @@ const Dashboard = () => {
 
         loadTopicCards()
     }, [activeTopic])
+
+    function loadTopicList(){
+        getTopicsList().then(res => {
+            setTopics(res)
+        })
+    }
 
     function loadTopicCards(){
         getTopicCards(activeTopic.id).then(res => {
@@ -93,7 +99,7 @@ const Dashboard = () => {
                 {topics.map((item, index) => (
                     <TopicMenu item={item} key={index} />
                 ))}
-                <button>Add Topic</button>
+                <button onClick={() => setIsAddTopicModalOpen(true)}>Add Topic</button>
             </div>
         </div>
         <hr className='my-4' />
@@ -113,6 +119,7 @@ const Dashboard = () => {
         )}
         {isAddModelOpen && <AddCardModal topic={activeTopic} onClose={() => setIsAddModalOpen(prev => !prev)} onSuccess={() => loadTopicCards()} />}
         {editTopic && <EditCardModal topic={activeTopic} onClose={() => setEditTopic(null)} item={editTopic} onSuccess={() => loadTopicCards()} />}
+        {isAddTopicModalOpen && <AddTopicModal onClose={() => setIsAddTopicModalOpen(false)} onSuccess={() => loadTopicList()} />}
     </main>
   )
 }
