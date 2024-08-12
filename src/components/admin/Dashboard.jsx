@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import TopicCard from './TopicCard'
 import AddCardModal from '../AddCardModal'
-import { getTopicCards, getTopicsList } from '../../server_api'
+import { deleteCard, getTopicCards, getTopicsList } from '../../server_api'
+import EditCardModal from '../EditCardModal'
+import { toast } from 'react-toastify'
 
 const Dashboard = () => {
-    const [isAddModelOpen, setIsAddModalOpen] = useState(true);
+    const [isAddModelOpen, setIsAddModalOpen] = useState(false);
+    const [editTopic, setEditTopic] = useState(false);
     const [activeTopic, setActiveTopic] = useState(null);
     const [topics, setTopics] = useState([]);
-    const [topicCards, setTopicCards] = useState({})
+    const [topicCards, setTopicCards] = useState({});
 
     // load topics on initial load
     useEffect(() => {
@@ -35,13 +38,17 @@ const Dashboard = () => {
             return
         }
 
+        loadTopicCards()
+    }, [activeTopic])
+
+    function loadTopicCards(){
         getTopicCards(activeTopic.id).then(res => {
             setTopicCards(prev => ({
                 ...prev,
                 [activeTopic.name]: res
             }))
         })
-    }, [activeTopic])
+    }
 
 
     function onTopicChange(item){
@@ -54,6 +61,27 @@ const Dashboard = () => {
                 {item.name}
             </button>
         )
+    }
+
+    function onCardEdit(item){
+        setEditTopic(item)
+    }
+
+    function onCardDelete(item){
+        // confirm("Are you sure you want to delete?")
+        const result = window.confirm("Are you sure you want to delete?")
+        if(result){
+            deleteCard(item.id).then(res => {
+                if(res.status){
+                    toast.success("Card deleted successfully")
+                    loadTopicCards()
+                }else{
+                    return Promise.reject("Unable to delete card")
+                }
+            }).catch(e => {
+                toast.error(e)
+            })
+        }
     }
 
   return (
@@ -73,17 +101,18 @@ const Dashboard = () => {
             <section className="section-topic">
                 <div className="flex justify-between">
                         <h2>{activeTopic.name} Topic</h2>
-                        <button>New Card</button>
+                        <button onClick={() => setIsAddModalOpen(prev => !prev)}>New Card</button>
                     </div>
 
                     <div className="grid grid-cols-4 gap-4 mt-4">
                         {topicCards && topicCards[activeTopic.name] && topicCards[activeTopic.name].map((item, index) => (
-                            <TopicCard item={item} key={index} />
+                            <TopicCard item={item} key={index} onDelete={() => onCardDelete(item)} onEdit={() => onCardEdit(item)} />
                         ))}
                     </div>
             </section>
         )}
-        {isAddModelOpen && <AddCardModal onClose={() => setIsAddModalOpen(prev => !prev)} />}
+        {isAddModelOpen && <AddCardModal topic={activeTopic} onClose={() => setIsAddModalOpen(prev => !prev)} onSuccess={() => loadTopicCards()} />}
+        {editTopic && <EditCardModal topic={activeTopic} onClose={() => setEditTopic(null)} item={editTopic} onSuccess={() => loadTopicCards()} />}
     </main>
   )
 }

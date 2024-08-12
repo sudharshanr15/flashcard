@@ -5,7 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Topic from './pages/Topic';
 import Admin from './pages/Admin';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
+      <ToastContainer />
     </main>
   );
 }
