@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { redirect, useParams, Redirect } from 'react-router-dom'
 import FlashCard from '../components/FlashCard'
 // import Swiper from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -32,11 +32,24 @@ const topics = [
 ]
 
 const Topic = ({ id }) => {
+    const [topicCards, setTopicCards] = useState([])
 
     const params = useParams()
 
+    useEffect(() => {
+      fetch("http://localhost:8081/api/topic/get_card.php?topic=" + params.id, {mode: "cors"}).then((res) => {
+        return res.json()
+      }).then(res => {
+        if(res.status){
+          setTopicCards(res.message)
+        }
+      }).catch(err => {
+        console.error(err)
+      })
+    }, [])
+
     return (
-        // <>
+      // <>
         // <FlashCard />
         // <FlashCard />
         // </>
@@ -50,15 +63,13 @@ const Topic = ({ id }) => {
             mousewheel={true}
             allowTouchMove={false}
         >
-            <SwiperSlide>
-                <FlashCard />
-            </SwiperSlide>
-            <SwiperSlide>
-                <FlashCard />
-            </SwiperSlide>
-            <SwiperSlide>
-                <FlashCard />
-            </SwiperSlide>
+            {
+              topicCards.map((item, index) => (
+                <SwiperSlide key={index}>
+                    <FlashCard item={item} />
+                </SwiperSlide>
+              ))
+            }
         </Swiper>
     )
 }

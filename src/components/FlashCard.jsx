@@ -9,7 +9,7 @@ const questionColors = [
     // 'bg-violet-600'
 ]
 
-const FlashCard = () => {
+const FlashCard = ({ item }) => {
     const flashcard_container_ref = useRef();
 
     function revealAnswer(e){
@@ -22,11 +22,11 @@ const FlashCard = () => {
         <div className="flex items-center justify-center">
             <div className="flashcard-wrapper" onClick={revealAnswer}>
                 <div className="w-[250px] h-[500px] flex items-center justify-center border border-gray-500 rounded-md flashcard-container relative" ref={flashcard_container_ref}>
-                    <div className={`${questionColor} flashcard-question h-full p-4`}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos adipisci nobis, consequatur maiores libero et qui ut corrupti iusto vitae.
+                    <div className={`${questionColor} flashcard-question h-full p-4 w-full`}>
+                        {item.question}
                     </div>
-                    <div className={`bg-lime-400 flashcard-answer h-full p-4 text-black`}>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt ab id corrupti? Corrupti harum, eum fugit aliquam magnam tempore mollitia.
+                    <div className={`bg-lime-400 flashcard-answer h-full p-4 text-black w-full`}>
+                        {item.answer}
                     </div>
                 </div>
             </div>
