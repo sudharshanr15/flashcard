@@ -107,4 +107,27 @@ async function editCard(topic, question, answer, id){
         }
     })
 }
-export { getTopicsList, getTopicCards, deleteCard, addTopic, addCard, editCard }
+
+async function login(username, password){
+    const url = new URL("http://localhost:8081/api/login.php")
+    const formdata = new FormData()
+    formdata.append("username", username);
+    formdata.append("password", password);
+
+    return fetch(url.toString(), {
+        method: "POST",
+        body: formdata,
+        mode: "cors",
+        credentials: 'include'
+    }).then(res => {
+        return res.json()
+    }).then(res => {
+        return res
+    }).catch(err => {
+        console.error(err)
+        return {
+            status: false
+        }
+    })
+}
+export { getTopicsList, getTopicCards, deleteCard, addTopic, addCard, editCard, login }
