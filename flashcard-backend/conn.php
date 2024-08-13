@@ -2,10 +2,10 @@
 
 $conn = null;
 
-$username = "root";
-$password = "dharshan";
-$hostname = "localhost";
-$db = "flashcard";
+$username = "sudharshan";
+$password = "sudharshan";
+$hostname = "mysql.selfmade.ninja";
+$db = "sudharshan_flashcard";
 
 try{
     $conn = new PDO("mysql:host=$hostname;dbname=$db", $username, $password);
