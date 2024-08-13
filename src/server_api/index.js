@@ -1,5 +1,5 @@
 async function getTopicsList() {
-    return fetch("https://portfolio.selfmade.one/api/topic/get.php", { mode: "cors" })
+    return fetch("http://localhost:8081/api/topic/get.php", { mode: "cors", credentials: "include" })
         .then((res) => {
             return res.json();
         })
@@ -109,7 +109,7 @@ async function editCard(topic, question, answer, id){
 }
 
 async function login(username, password){
-    const url = new URL("https://portfolio.selfmade.one/api/login.php")
+    const url = new URL("http://localhost:8081/api/login.php")
     const formdata = new FormData()
     formdata.append("username", username);
     formdata.append("password", password);
@@ -118,7 +118,7 @@ async function login(username, password){
         method: "POST",
         body: formdata,
         mode: "cors",
-        credentials: 'include'
+        credentials: "include"
     }).then(res => {
         return res.json()
     }).then(res => {
@@ -130,4 +130,26 @@ async function login(username, password){
         }
     })
 }
-export { getTopicsList, getTopicCards, deleteCard, addTopic, addCard, editCard, login }
+
+async function authorize(){
+    const url = new URL("http://localhost:8081/validate.php");
+    return fetch(url.toString(), {
+        mode: "cors",
+        credentials: "include"
+    }).then(res => {
+        if(res.ok){
+            return {
+                status: true
+            }
+        }
+        return res.json()
+    }).then(res => {
+        return res
+    }).catch(err => {
+        console.error(err)
+        return {
+            status: false
+        }
+    })
+}
+export { getTopicsList, getTopicCards, deleteCard, addTopic, addCard, editCard, login, authorize }

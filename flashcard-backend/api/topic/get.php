@@ -5,7 +5,6 @@ header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Access-Control-Allow-Credentials: true");
 
 require_once "../../conn.php";
-require_once "../../validate.php";
 
 try{
     $query = "SELECT * from topics";

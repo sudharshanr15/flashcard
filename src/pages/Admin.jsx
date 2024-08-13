@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Login from '../components/admin/Login'
 import Dashboard from '../components/admin/Dashboard';
+import { authorize } from '../server_api';
 
 const Admin = () => {
-    const loggedIn = true
+    const [isAuthorized, setIsAuthorized] = useState(false);
 
-    if(loggedIn) return <Dashboard />;
+    useEffect(() => {
+        authorize().then(res => {
+            if(res.status){
+                setIsAuthorized(true)
+            }else{
+                setIsAuthorized(false)
+            }
+        }).catch(err => setIsAuthorized(false))
+    }, [])
+
+    if(isAuthorized) return <Dashboard />;
     else return <Login />
 }
 

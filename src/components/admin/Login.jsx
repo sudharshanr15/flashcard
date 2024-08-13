@@ -21,18 +21,19 @@ const Login = () => {
     }
 
     return (
-        <main className="flex h-full items-center justify-center">
-            <div className="bg-red-900 p-4 rounded">
-                <h1 className="mb-4">Login</h1>
+        <main className="flex h-screen items-center justify-center">
+            <div className="bg-bluegray p-8 rounded">
+                <h1 className="mb-4 text-xl font-bold">Login</h1>
                 <form action="" className="" onSubmit={onSubmit}>
-                    <div className="mb-2">
+                    <div className="mb-4">
                         <label htmlFor="username">Username</label>
                         <input
                             type="text"
                             id="username"
-                            className="p-2 w-full rounded text-black"
+                            className="p-2 mt-2 w-full rounded text-black bg-gray-100"
                             required
                             ref={usernameRef}
+                            placeholder="Enter your username"
                         />
                     </div>
                     <div className="mb-2">
@@ -40,12 +41,13 @@ const Login = () => {
                         <input
                             type="password"
                             id="password"
-                            className="p-2 w-full rounded text-black"
+                            className="p-2 mt-2 w-full rounded text-black bg-gray-100"
                             required
+                            placeholder="Enter password"
                             ref={passwordRef}
                         />
                     </div>
-                    <button className="w-full bg-green-900 p-2 rounded mt-4">
+                    <button className="w-full bg-white text-black p-2 rounded mt-4">
                         Submit
                     </button>
                 </form>
