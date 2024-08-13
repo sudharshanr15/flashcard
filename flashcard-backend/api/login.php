@@ -6,7 +6,8 @@ $username = $_POST['username'] ?? null;
 $password = $_POST['password'] ?? null;
 
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Credentials: true");
 
 if(!($username && $password)){
     $res = [
