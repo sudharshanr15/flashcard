@@ -63,7 +63,7 @@ const Dashboard = () => {
 
     const TopicMenu = ({ item }) => {
         return (
-            <button className="border bg-red-900 p-2 rounded" onClick={() => onTopicChange(item)}>
+            <button className={`${(activeTopic && activeTopic.name) == item.name ? 'border' : ''} bg-bluegray p-2 rounded text-md`} onClick={() => onTopicChange(item)}>
                 {item.name}
             </button>
         )
@@ -92,25 +92,34 @@ const Dashboard = () => {
 
   return (
     <main>
-        <h1>Dashboard</h1>
-        <div>
-            <h2>Topics</h2>
-            <div className="flex gap-4">
+        <h1 className='text-xl lg:text-2xl mb-6 font-semibold'>Welcome Admin!</h1>
+        <div className=''>
+            <h2 className='text-xl mb-4'>Topics</h2>
+            <div className="flex gap-4 flex-wrap">
                 {topics.map((item, index) => (
                     <TopicMenu item={item} key={index} />
                 ))}
-                <button onClick={() => setIsAddTopicModalOpen(true)}>Add Topic</button>
+                <button onClick={() => setIsAddTopicModalOpen(true)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                    </svg>
+                </button>
             </div>
         </div>
-        <hr className='my-4' />
+        <hr className='my-6' />
         {activeTopic && (
             <section className="section-topic">
-                <div className="flex justify-between">
-                        <h2>{activeTopic.name} Topic</h2>
-                        <button onClick={() => setIsAddModalOpen(prev => !prev)}>New Card</button>
+                <div className="flex justify-between mb-4">
+                        <h2 className='text-xl'>{activeTopic.name}</h2>
+                        <button onClick={() => setIsAddModalOpen(prev => !prev)} className='inline text-bluegray bg-white px-2 py-1 rounded-full'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-plus-lg inline" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                            </svg>
+                            <span className='ms-2'>New Card</span>
+                        </button>
                     </div>
 
-                    <div className="grid grid-cols-4 gap-4 mt-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                         {topicCards && topicCards[activeTopic.name] && topicCards[activeTopic.name].map((item, index) => (
                             <TopicCard item={item} key={index} onDelete={() => onCardDelete(item)} onEdit={() => onCardEdit(item)} />
                         ))}
