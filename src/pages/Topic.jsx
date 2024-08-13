@@ -69,14 +69,9 @@ const Topic = ({ id }) => {
         >
             {
               topicCards.map((item, index) => (
-                <>
                 <SwiperSlide key={index} className='mb-10'>
                     <FlashCard item={item} />
                 </SwiperSlide>
-                <SwiperSlide key={index}>
-                    <FlashCard item={item} />
-                </SwiperSlide>
-                </>
               ))
             }
         </Swiper>
