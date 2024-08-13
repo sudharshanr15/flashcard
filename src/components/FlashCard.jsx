@@ -13,10 +13,10 @@ const FlashCard = ({ item }) => {
         <div className="flex items-center justify-center">
             <div className="flashcard-wrapper" onClick={revealAnswer}>
                 <div className="min-w-[250px] max-w-[250px] min-h-[400px] flex items-center justify-center flashcard-container relative" ref={flashcard_container_ref}>
-                    <button className={`bg-gray-200 flashcard-question h-full p-4 w-full flex items-center justify-center`}>
-                        <p className='text-lg text-black'>{item.question}</p>
+                    <button className={`bg-white flashcard-question h-full p-4 w-full flex items-center justify-center border-[6px] shadow-lg border-blue-500`}>
+                        <p className='text-lg text-center text-black font-semibold'>{item.question}</p>
                     </button>
-                    <div className={`bg-lime-400 flashcard-answer h-full p-4 text-black w-full flex items-center justify-center`}>
+                    <div className={`bg-[#F0F0F0] flashcard-answer h-full p-4 text-black w-full flex items-center justify-center border-[6px] shadow-lg border-green-500`}>
                         <p className='text-md text-black'>{item.answer}</p>
                     </div>
                 </div>

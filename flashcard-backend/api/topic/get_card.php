@@ -19,7 +19,7 @@ if(!$topic){
 require_once "../../conn.php";
 
 try{
-    $query = $conn->prepare("SELECT * from topic_cards where topic_id=:topic_id");
+    $query = $conn->prepare("select tc.*, t.name from topic_cards as tc inner join topics as t on t.id = tc.topic_id where name = :topic_id;");
     $query->bindParam(":topic_id", $topic);
     $query->execute();
 

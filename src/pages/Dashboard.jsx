@@ -40,7 +40,7 @@ const Dashboard = () => {
         <div className="my-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {topics.map((item, index) => (
-                  <Link to={"/" + item.id} className="border p-4 border-gray-700 rounded-md bg-bluegray bg-opacity-50 hover:border-gray-500 text-lg" key={index}>
+                  <Link to={"/" + item.name} className="border p-4 border-gray-700 rounded-md bg-bluegray bg-opacity-50 hover:border-gray-500 text-lg" key={index}>
                       {item.name}
                   </Link>
                 ))}

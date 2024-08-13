@@ -42,3 +42,7 @@
 .swiper-button-prev::after, .swiper-button-next::after{
   font-size: 28px !important;
 }
+
+.swiper-pagination-bullet, .swiper-pagination-bullet-active{
+  background: white !important;
+}

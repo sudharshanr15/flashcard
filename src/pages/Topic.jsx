@@ -50,31 +50,31 @@ const Topic = ({ id }) => {
     }, [])
 
     return (
-      // <>
-        // <FlashCard />
-        // <FlashCard />
-        // </>
-        <Swiper
-            slidesPerView={1}
-            loop={false}
-            navigation={true}
-            modules={[Navigation, Pagination]}
-            draggable={false}
-            keyboard={true}
-            mousewheel={true}
-            allowTouchMove={false}
-            pagination={{
-              type: 'fraction',
-            }}
-        >
-            {
-              topicCards.map((item, index) => (
-                <SwiperSlide key={index} className='mb-10'>
-                    <FlashCard item={item} />
-                </SwiperSlide>
-              ))
-            }
-        </Swiper>
+      <div className='h-[80vh] flex items-center justify-center'>
+        <div className='w-full'>
+          <h1 className='text-center text-2xl underline font-bold mb-12'>{params.id}</h1>
+          <Swiper
+              slidesPerView={1}
+              loop={false}
+              navigation={true}
+              modules={[Navigation, Pagination]}
+              keyboard={true}
+              mousewheel={true}
+              pagination={{
+                clickable: true,
+              }}
+          >
+              {
+                topicCards.map((item, index) => (
+                  <SwiperSlide key={index} className='mb-10'>
+                      <FlashCard item={item} />
+                  </SwiperSlide>
+                ))
+              }
+          </Swiper>
+          <p className='text-center text-sm text-gray-200'>Click on the card to Flip</p>
+        </div>
+      </div>
     )
 }
 
