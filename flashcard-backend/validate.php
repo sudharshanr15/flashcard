@@ -1,6 +1,6 @@
 <?php
 
-// require_once __DIR__ . "/conn.php";
+require_once __DIR__ . "/conn.php";
 
 header("Content-Type: application/json");
 header("Access-Control-Allow-Origin: https://sudharshan.selfmade.one");
