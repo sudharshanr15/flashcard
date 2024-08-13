@@ -5,6 +5,7 @@ import { deleteCard, getTopicCards, getTopicsList } from '../../server_api'
 import EditCardModal from '../EditCardModal'
 import { toast } from 'react-toastify'
 import AddTopicModal from '../AddTopicModal'
+import { Link } from 'react-router-dom'
 
 const Dashboard = () => {
     const [isAddModelOpen, setIsAddModalOpen] = useState(false);
@@ -92,7 +93,15 @@ const Dashboard = () => {
 
   return (
     <main>
-        <h1 className='text-xl lg:text-2xl mb-6 font-semibold'>Welcome Admin!</h1>
+        <div className="flex justify-between items-center mb-8">
+            <h1 className='text-xl lg:text-2xl font-semibold'>Welcome Admin!</h1>
+            <Link to={"/"} className='border border-white p-2 rounded'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill inline" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                </svg>
+                <span className='ms-2'>Home</span>
+            </Link>
+        </div>
         <div className=''>
             <h2 className='text-xl mb-4'>Topics</h2>
             <div className="flex gap-4 flex-wrap">

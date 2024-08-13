@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { login } from "../../server_api";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const usernameRef = useRef();
@@ -51,6 +52,7 @@ const Login = () => {
                         Submit
                     </button>
                 </form>
+                <Link to={"/"} className="underline text-md mt-6 text-center block">Go Back</Link>
             </div>
         </main>
     );
