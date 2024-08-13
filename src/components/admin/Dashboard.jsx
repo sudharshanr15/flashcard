@@ -49,7 +49,7 @@ const Dashboard = () => {
     }
 
     function loadTopicCards(){
-        getTopicCards(activeTopic.id).then(res => {
+        getTopicCards(activeTopic.name).then(res => {
             setTopicCards(prev => ({
                 ...prev,
                 [activeTopic.name]: res
