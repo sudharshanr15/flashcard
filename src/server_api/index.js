@@ -1,5 +1,5 @@
 async function getTopicsList() {
-    return fetch("http://localhost:8081/api/topic/get.php", { mode: "cors" })
+    return fetch("https://portfolio.selfmade.one/api/topic/get.php", { mode: "cors" })
         .then((res) => {
             return res.json();
         })
@@ -17,7 +17,7 @@ async function getTopicsList() {
 }
 
 async function getTopicCards(id){
-    return fetch("http://localhost:8081/api/topic/get_card.php?topic=" + id, { mode: "cors" })
+    return fetch("https://portfolio.selfmade.one/api/topic/get_card.php?topic=" + id, { mode: "cors" })
     .then((res) => {
         return res.json();
     })
@@ -35,7 +35,7 @@ async function getTopicCards(id){
 }
 
 async function deleteCard(card){
-    return fetch("http://localhost:8081/api/topic/delete_card.php?card=" + card, { mode: "cors" })
+    return fetch("https://portfolio.selfmade.one/api/topic/delete_card.php?card=" + card, { mode: "cors" })
     .then(res => {
         return res.json()
     }).then(res => {
@@ -50,7 +50,7 @@ async function deleteCard(card){
 }
 
 async function addTopic(topic){
-    const url = new URL("http://localhost:8081/api/topic/add.php")
+    const url = new URL("https://portfolio.selfmade.one/api/topic/add.php")
     url.searchParams.set("name", topic);
 
     return fetch(url.toString(), { mode: "cors" })
@@ -68,7 +68,7 @@ async function addTopic(topic){
 }
 
 async function addCard(topic, question, answer){
-    const url = new URL("http://localhost:8081/api/topic/add_card.php")
+    const url = new URL("https://portfolio.selfmade.one/api/topic/add_card.php")
     url.searchParams.set("topic", topic);
     url.searchParams.set("question", question);
     url.searchParams.set("answer", answer);
@@ -88,7 +88,7 @@ async function addCard(topic, question, answer){
 }
 
 async function editCard(topic, question, answer, id){
-    const url = new URL("http://localhost:8081/api/topic/edit_card.php")
+    const url = new URL("https://portfolio.selfmade.one/api/topic/edit_card.php")
     url.searchParams.set("topic", topic);
     url.searchParams.set("question", question);
     url.searchParams.set("answer", answer);
@@ -109,7 +109,7 @@ async function editCard(topic, question, answer, id){
 }
 
 async function login(username, password){
-    const url = new URL("http://localhost:8081/api/login.php")
+    const url = new URL("https://portfolio.selfmade.one/api/login.php")
     const formdata = new FormData()
     formdata.append("username", username);
     formdata.append("password", password);

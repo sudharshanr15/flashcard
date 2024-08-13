@@ -37,7 +37,7 @@ const Topic = ({ id }) => {
     const params = useParams()
 
     useEffect(() => {
-      fetch("http://localhost:8081/api/topic/get_card.php?topic=" + params.id, {mode: "cors"}).then((res) => {
+      fetch("https://portfolio.selfmade.one/api/topic/get_card.php?topic=" + params.id, {mode: "cors"}).then((res) => {
         return res.json()
       }).then(res => {
         if(res.status){
