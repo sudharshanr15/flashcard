@@ -4,9 +4,10 @@ import FlashCard from '../components/FlashCard'
 // import Swiper from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { Navigation } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const topics = [
     {
@@ -57,17 +58,25 @@ const Topic = ({ id }) => {
             slidesPerView={1}
             loop={false}
             navigation={true}
-            modules={[Navigation]}
+            modules={[Navigation, Pagination]}
             draggable={false}
             keyboard={true}
             mousewheel={true}
             allowTouchMove={false}
+            pagination={{
+              type: 'fraction',
+            }}
         >
             {
               topicCards.map((item, index) => (
+                <>
+                <SwiperSlide key={index} className='mb-10'>
+                    <FlashCard item={item} />
+                </SwiperSlide>
                 <SwiperSlide key={index}>
                     <FlashCard item={item} />
                 </SwiperSlide>
+                </>
               ))
             }
         </Swiper>

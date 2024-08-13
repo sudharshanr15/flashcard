@@ -36,13 +36,13 @@ const Dashboard = () => {
 
   return (
     <>
-        <h1 className='text-center text-2xl'>Choose a Topic and evaluate your knowledge!</h1>
-        <div className="my-8">
-            <div className="grid grid-cols-4 gap-4">
+        <h1 className='text-center text-2xl'>Choose a Topic and test your knowledge with Flashcards</h1>
+        <div className="my-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {topics.map((item, index) => (
-                <Link to={"/" + item.id} className="border p-4 border-gray-600 rounded-md bg-blue-950 bg-opacity-50 hover:scale-x-105" key={index}>
-                    {item.name}
-                </Link>
+                  <Link to={"/" + item.id} className="border p-4 border-gray-700 rounded-md bg-bluegray bg-opacity-50 hover:border-gray-500 text-lg" key={index}>
+                      {item.name}
+                  </Link>
                 ))}
             </div>
         </div>

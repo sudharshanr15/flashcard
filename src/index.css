@@ -34,3 +34,11 @@
   }
 
 }
+
+.swiper-button-prev, .swiper-button-next{
+  color: white !important;
+}
+
+.swiper-button-prev::after, .swiper-button-next::after{
+  font-size: 28px !important;
+}

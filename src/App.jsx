@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <main className='min-h-screen w-full bg-slate-900 text-white'>
-      <div className="max-w-[1400px] mx-auto py-8">
+      <div className="max-w-[1400px] mx-auto py-8 px-4">
         <BrowserRouter>
           <Routes>
             <Route path='/' index element={<Dashboard />} />
