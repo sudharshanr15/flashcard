@@ -5,7 +5,7 @@ $question = $_GET['question'] ?? null;
 $answer = $_GET['answer'] ?? null;
 
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: http://localhost:3000");
+header("Access-Control-Allow-Origin: https://sudharshan.selfmade.one");
 header("Access-Control-Allow-Credentials: true");
 
 if(!($topic && $question && $answer)){

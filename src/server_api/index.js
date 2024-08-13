@@ -1,5 +1,5 @@
 async function getTopicsList() {
-    return fetch("http://localhost:8081/api/topic/get.php", { mode: "cors", credentials: "include" })
+    return fetch("https://portfolio.selfmade.one/api/topic/get.php", { mode: "cors", credentials: "include" })
         .then((res) => {
             return res.json();
         })
@@ -109,7 +109,7 @@ async function editCard(topic, question, answer, id){
 }
 
 async function login(username, password){
-    const url = new URL("http://localhost:8081/api/login.php")
+    const url = new URL("https://portfolio.selfmade.one/api/login.php")
     const formdata = new FormData()
     formdata.append("username", username);
     formdata.append("password", password);
@@ -132,7 +132,7 @@ async function login(username, password){
 }
 
 async function authorize(){
-    const url = new URL("http://localhost:8081/validate.php");
+    const url = new URL("https://portfolio.selfmade.one/validate.php");
     return fetch(url.toString(), {
         mode: "cors",
         credentials: "include"
