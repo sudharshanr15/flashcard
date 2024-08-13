@@ -73,7 +73,7 @@ const Topic = ({ id }) => {
               }
           </Swiper>
           <p className='text-center text-sm text-gray-200'>Click on the card to Flip</p>
-          <Link to={"/"} className='underline text-md mt-4'>
+          <Link to={"/"} className='underline text-md mt-4 block text-center'>
               Go back
           </Link>
         </div>
